@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Email Test - No Redirects</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: #1a1a1a; 
+            color: white; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: #2a2a2a; 
+            padding: 30px; 
+            border-radius: 10px; 
+        }
+        h1 { color: #4ade80; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #4ade80; 
+        }
+        input, textarea, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #444; 
+            border-radius: 6px; 
+            background: #333;
+            color: white;
+            font-size: 16px;
+        }
+        button { 
+            background: linear-gradient(135deg, #4ade80, #059669); 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status { 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 6px; 
+            font-weight: bold;
+        }
+        .success { 
+            background: rgba(74, 222, 128, 0.2); 
+            color: #4ade80; 
+            border: 1px solid #4ade80; 
+        }
+        .error { 
+            background: rgba(239, 68, 68, 0.2); 
+            color: #ef4444; 
+            border: 1px solid #ef4444; 
+        }
+        .loading { 
+            background: rgba(59, 130, 246, 0.2); 
+            color: #3b82f6; 
+            border: 1px solid #3b82f6; 
+        }
+        .note {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+            border: 1px solid #a855f7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Baraka Cyber Forge - Direct Email Test</h1>
+        
+        <div class="note">
+            <strong>📧 Direct Email System Test</strong><br>
+            This form sends emails directly to <strong>excel6737@gmail.com</strong> without any redirects.<br>
+            Works in both development and production environments.
+        </div>
+        
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">👤 Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">📧 Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="company">🏢 Company Name *</label>
+                <input type="text" id="company" name="company" required placeholder="Your company name">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">📱 Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+254 XXX XXX XXX">
+            </div>
+            
+            <div class="form-group">
+                <label for="service">🎯 Service Interest</label>
+                <select id="service" name="service">
+                    <option value="">Select a service</option>
+                    <option value="Web Development">🌐 Web Development</option>
+                    <option value="Mobile App Development">📱 Mobile App Development</option>
+                    <option value="Cloud Solutions">☁️ Cloud Solutions</option>
+                    <option value="Digital Marketing">📈 Digital Marketing</option>
+                    <option value="Cybersecurity">🔒 Cybersecurity</option>
+                    <option value="AI/ML Solutions">🤖 AI/ML Solutions</option>
+                    <option value="General Inquiry">💬 General Inquiry</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">💬 Your Message *</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or inquiry..."></textarea>
+            </div>
+            
+            <button type="submit" id="submitBtn">
+                <span id="buttonText">🚀 Send Direct Email</span>
+            </button>
+        </form>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const buttonText = document.getElementById('buttonText');
+            const statusDiv = document.getElementById('status');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                company: document.getElementById('company').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.email || !formData.company || !formData.message) {
+                statusDiv.innerHTML = '<div class="status error">❌ Please fill in all required fields marked with *</div>';
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                statusDiv.innerHTML = '<div class="status error">❌ Please enter a valid email address</div>';
+                return;
+            }
+            
+            // Start submission
+            submitBtn.disabled = true;
+            buttonText.textContent = '📤 Sending Email...';
+            statusDiv.innerHTML = '<div class="status loading">📤 Sending your message directly to excel6737@gmail.com...</div>';
+            
+            console.log('📧 Sending email directly (no redirects):', formData);
+            
+            try {
+                // Method 1: Try Formspree (most reliable)
+                const formspreeResponse = await fetch('https://formspree.io/f/mgvewpvr', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        company: formData.company,
+                        phone: formData.phone || 'Not provided',
+                        service: formData.service || 'General Inquiry',
+                        message: formData.message,
+                        _subject: `🚀 Test Business Inquiry from ${formData.name} - ${formData.service || 'General'} Service`,
+                        _replyto: formData.email
+                    })
+                });
+                
+                console.log('📊 Formspree response status:', formspreeResponse.status);
+                
+                if (formspreeResponse.ok) {
+                    const result = await formspreeResponse.json();
+                    console.log('✅ Formspree result:', result);
+                    
+                    if (result.ok !== false && !result.error) {
+                        statusDiv.innerHTML = '<div class="status success">🎉 Success! Your email has been sent directly to excel6737@gmail.com. No redirects, no popups. Our team will respond within 24 hours!</div>';
+                        document.getElementById('contactForm').reset();
+                        setTimeout(() => statusDiv.innerHTML = '', 15000);
+                    } else {
+                        throw new Error('Formspree returned error: ' + JSON.stringify(result));
+                    }
+                } else {
+                    throw new Error('Formspree HTTP error: ' + formspreeResponse.status);
+                }
+                
+            } catch (error) {
+                console.error('❌ Primary method failed:', error);
+                
+                try {
+                    // Method 2: Try FormSubmit as backup
+                    console.log('🔄 Trying backup method: FormSubmit...');
+                    
+                    const formSubmitResponse = await fetch('https://formsubmit.co/ajax/excel6737@gmail.com', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: formData.name,
+                            email: formData.email,
+                            company: formData.company,
+                            phone: formData.phone || 'Not provided',
+                            service: formData.service || 'General Inquiry',
+                            message: formData.message,
+                            _subject: `🚀 Test Business Inquiry from ${formData.name}`,
+                            _captcha: false,
+                            _template: 'table'
+                        })
+                    });
+                    
+                    if (formSubmitResponse.ok) {
+                        const result = await formSubmitResponse.json();
+                        if (result.success !== false) {
+                            statusDiv.innerHTML = '<div class="status success">🎉 Success! Your email has been sent directly to excel6737@gmail.com via backup service. Our team will respond within 24 hours!</div>';
+                            document.getElementById('contactForm').reset();
+                            setTimeout(() => statusDiv.innerHTML = '', 15000);
+                        } else {
+                            throw new Error('FormSubmit failed');
+                        }
+                    } else {
+                        throw new Error('FormSubmit HTTP error');
+                    }
+                    
+                } catch (backupError) {
+                    console.error('❌ Backup method also failed:', backupError);
+                    statusDiv.innerHTML = '<div class="status error">❌ Unable to send email at the moment. Please contact us directly at <strong>excel6737@gmail.com</strong> or call <strong>+254 111 748 7554</strong>.</div>';
+                }
+            }
+            
+            // Reset button
+            submitBtn.disabled = false;
+            buttonText.textContent = '🚀 Send Direct Email';
+        });
+    </script>
+</body>
+</html>
