@@ -12,7 +12,7 @@ const Team = () => {
       email: "excel6737@gmail.com"
     },
     {
-      name: "Iann Dior",
+      name: "Iann Abungana",
       role: "CTO & Web Development Expert", 
       bio: "Chief Technology Officer with expertise in web development technologies, leading our technical architecture and development teams.",
       specialties: ["Web Development", "Technical Leadership", "System Architecture"],
@@ -21,7 +21,7 @@ const Team = () => {
       email: "excel6737@gmail.com"
     },
     {
-      name: "Andrew Otien",
+      name: "Andrew Otieno",
       role: "COO & Backend Developer",
       bio: "Chief Operating Officer and backend development specialist, ensuring smooth operations and robust server-side solutions.",
       specialties: ["Backend Development", "Operations Management", "Database Design"],
@@ -48,12 +48,12 @@ const Team = () => {
       email: "excel6737@gmail.com"
     },
     {
-      name: "Alvin Njoroge",
+      name: "Alvin Maina",
       role: "Finance Manager & Full-Stack Developer",
       bio: "Finance manager and full-stack developer, handling financial operations while contributing to software development projects.",
       specialties: ["Financial Management", "Full-Stack Development", "Business Analysis"],
       image: "/placeholder.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/alvin-maina-280837368?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       email: "excel6737@gmail.com"
     },
     {
